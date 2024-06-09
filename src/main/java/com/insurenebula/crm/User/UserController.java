@@ -23,9 +23,15 @@ public class UserController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+    
+    @PostMapping("/api/user/{id}")
+    public User editUser(@RequestBody User user) {
+        return this.userRepository.save(user);
+    }
 
     @PostMapping("/api/user")
     public User createUser(@RequestBody User user) {
         return this.userRepository.save(user);
     }
+
 }

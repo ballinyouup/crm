@@ -1,0 +1,25 @@
+### Post request to create the User
+POST http://localhost:8080/api/user HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "foo",
+    "lastName": "bar",
+    "email": "test@gmail.com"
+}
+
+### Get request to get the user data
+GET http://localhost:8080/api/user/1 HTTP/1.1
+
+### Post request to send the new updated user to the server
+POST http://localhost:8080/api/user/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "firstName": "lima",
+    "lastName": "alpha",
+    "email": "new-email@gmail.com",
+    "createdAt": null,
+    "updatedAt": null
+}
