@@ -33,6 +33,15 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<Iterable<User>> getUsers() {
+        // Check if user exists
+        Iterable<User> users = userRepository.findAll();
+
+        // Return user if found or throw exception
+        return ResponseEntity.status(HttpStatus.OK).body(users);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<User> editUser(@PathVariable Integer id, @RequestBody User user) {
         // Check if user exists

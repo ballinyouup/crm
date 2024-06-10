@@ -12,9 +12,11 @@ public class Application {
         Dotenv dotenv = Dotenv.load();
 
         // Set environment variables
-        System.setProperty("SPRING_DATASOURCE_URL", dotenv.get("DATABASE_URL"));
-        System.setProperty("SPRING_DATASOURCE_USERNAME", dotenv.get("DATABASE_USERNAME"));
-        System.setProperty("SPRING_DATASOURCE_PASSWORD", dotenv.get("DATABASE_PASSWORD"));
+        System.setProperty("DATABASE_URL", dotenv.get("DATABASE_URL"));
+        System.setProperty("DATABASE_USERNAME", dotenv.get("DATABASE_USERNAME"));
+        System.setProperty("DATABASE_PASSWORD", dotenv.get("DATABASE_PASSWORD"));
+        System.setProperty("GOOGLE_CLIENT_ID", dotenv.get("GOOGLE_CLIENT_ID"));
+        System.setProperty("GOOGLE_CLIENT_SECRET", dotenv.get("GOOGLE_CLIENT_SECRET"));
 
         SpringApplication.run(Application.class, args);
     }
