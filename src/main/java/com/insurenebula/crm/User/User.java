@@ -1,84 +1,40 @@
 package com.insurenebula.crm.User;
 
-import java.time.LocalDateTime;
+import java.util.Set;
+import java.util.UUID;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
+import lombok.Data;
+@Data
 @Entity
-@Table(name = "\"user\"")
-public class User {
+@Table(name = "users")
+public class User implements UserDetails{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    @JdbcTypeCode(java.sql.Types.VARCHAR)
+    private UUID id;
 
-    // Hibernate expects entities to have a no-arg constructor
-    public User() {
-    }
-
-    public User(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    // Getters and Setters
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+    @OneToMany
+    private Set<Authority> authorities;
+    private String password;
+    private String name;
+    private String picture;
+    
+    @Column(unique = true)
+    private String username;
+    private boolean accountNonExpired;
+    private boolean accountNonLocked;
+    private boolean credentialsNonExpired;
+    private String provider;
+    private String providerId;
+    private boolean enabled;
+    
 }
+

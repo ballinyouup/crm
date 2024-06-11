@@ -12,7 +12,7 @@ Content-Type: application/json
 GET http://localhost:8080/api/user/1 HTTP/1.1
 
 ### Home Page
-GET http://localhost:8080/ HTTP/1.1
+GET http://localhost:8080/api/user/all HTTP/1.1
 
 ### Post request to send the new updated user to the server
 PUT http://localhost:8080/api/user/1 HTTP/1.1
